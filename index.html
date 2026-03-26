@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aptitude Practice</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-bg" aria-hidden="true"></div>
+
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">#</div>
+          <div class="brand-text">
+            <h1 class="brand-title">Aptitude Practice</h1>
+            <p class="brand-subtitle">Pick a topic, attempt the quiz, track your score.</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button id="resetBtn" class="btn btn-ghost" type="button" title="Reset quiz flow">Reset</button>
+        </div>
+      </header>
+
+      <!-- Topic Selection -->
+      <section id="page-topics" class="page">
+        <div class="card">
+          <div class="card-head">
+            <h2 class="card-title">Choose a topic</h2>
+            <p class="card-subtitle">Each topic has 25 multiple-choice questions with scoring and review.</p>
+          </div>
+
+          <div class="topic-toolbar" role="group" aria-label="Topic filters">
+            <div class="seg" aria-label="Category filter">
+              <button id="catAll" class="seg-btn is-active" type="button" data-cat="all">All</button>
+              <button id="catAptitude" class="seg-btn" type="button" data-cat="aptitude">Aptitude</button>
+              <button id="catReasoning" class="seg-btn" type="button" data-cat="reasoning">Reasoning</button>
+              <button id="catVerbal" class="seg-btn" type="button" data-cat="verbal">Verbal</button>
+            </div>
+
+            <label class="search" aria-label="Search topics">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="topicSearch" class="search-input" type="search" placeholder="Search topics..." />
+            </label>
+          </div>
+
+          <div id="topicsGrid" class="grid" role="list" aria-label="Topics">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div class="row row-right">
+            <button id="startBtn" class="btn btn-primary" type="button">
+              Start Quiz
+            </button>
+          </div>
+
+          <div class="hint" role="note">
+            Tip: Use keyboard navigation. Select a topic with <kbd>Tab</kbd> then <kbd>Enter</kbd>.
+          </div>
+        </div>
+      </section>
+
+      <!-- Quiz Page -->
+      <section id="page-quiz" class="page hidden" aria-live="polite">
+        <div class="card">
+          <div class="card-head">
+            <h2 class="card-title" id="quizHeading">Quiz</h2>
+            <p class="card-subtitle" id="quizSubheading">Topic</p>
+          </div>
+
+          <div class="quiz-top">
+            <div class="progress">
+              <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <div class="quiz-count" id="quizCount">Question 1 of 8</div>
+          </div>
+
+          <div class="question">
+            <div class="question-label">Question</div>
+            <h3 id="questionText" class="question-text">—</h3>
+          </div>
+
+          <div id="optionsGrid" class="options" role="list">
+            <!-- Options injected by JS -->
+          </div>
+
+          <div class="feedback hidden" id="feedbackBox" aria-live="assertive"></div>
+
+          <div class="row row-between">
+            <button id="backBtn" class="btn btn-ghost" type="button" disabled>Back</button>
+            <div class="row row-right">
+              <button id="skipBtn" class="btn btn-ghost" type="button" disabled>Skip</button>
+              <button id="nextBtn" class="btn btn-primary" type="button">Next</button>
+            </div>
+          </div>
+
+          <div class="fineprint">
+            Your score updates automatically after you finish.
+          </div>
+        </div>
+      </section>
+
+      <!-- Result Page -->
+      <section id="page-result" class="page hidden">
+        <div class="card card-result">
+          <div class="result-top">
+            <div class="score-ring" aria-hidden="true">
+              <svg viewBox="0 0 120 120" class="ring-svg">
+                <circle class="ring-bg" cx="60" cy="60" r="48" />
+                <circle
+                  id="ringProgress"
+                  class="ring-fg"
+                  cx="60"
+                  cy="60"
+                  r="48"
+                  pathLength="100"
+                />
+              </svg>
+              <div class="ring-center">
+                <div class="ring-score" id="resultScore">0%</div>
+                <div class="ring-label">Score</div>
+              </div>
+            </div>
+
+            <div class="result-summary">
+              <h2 class="card-title" id="resultTitle">Result</h2>
+              <p class="result-line" id="resultLine">Correct: 0 / 8</p>
+              <p class="result-line muted" id="resultMeta">Nice try — review explanations to improve.</p>
+
+              <div class="row row-right">
+                <button id="practiceAgainBtn" class="btn btn-primary" type="button">
+                  Practice Again
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider" role="separator" aria-hidden="true"></div>
+
+          <div class="section-head">
+            <h3 class="section-title">Question Review</h3>
+            <p class="section-subtitle" id="reviewSubtitle">Only shows questions you answered incorrectly.</p>
+          </div>
+
+          <div id="reviewList" class="review-list" aria-live="polite">
+            <!-- Review injected by JS -->
+          </div>
+
+          <div id="reviewEmpty" class="review-empty hidden">
+            <div class="review-empty-title">Perfect!</div>
+            <div class="review-empty-subtitle">You answered everything correctly. Great work.</div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        Built with HTML, CSS, and JavaScript. No setup required.
+      </footer>
+    </main>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
+
