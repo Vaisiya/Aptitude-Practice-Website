@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aptitude-practice-website.vercel.app/sitemap.xml
